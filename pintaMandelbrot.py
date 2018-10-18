@@ -18,49 +18,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import time
-from graphics import *
+from mandelbrot import *
 
-# Función que pinta en una ventana y salva en formato PPM el fractal de Mandelbrot. Nota: iteraciones tiene que ser menor que 1000
-def pintaMandelbrot(x1, y1, x2, y2, ancho, iteraciones, nombreFicheroPPM):
-  xa = x1
-  xb = x2
-  ya = y1
-  yb = y2
-  maxIt = iteraciones
-  # image size
-  imgx = ancho
-  imgy = int(abs (y2 - y1) * ancho / abs(x2 - x1));
-  
-  win = GraphWin('Mandelbrot', imgx, imgy, autoflush=False)     # Creamos la ventana (desactivamos autoflush para que se redibuje cuando nosotros digamos, no con cada pixel pintado)
-  im = Image(Point(0,0), imgx, imgy)           # Creamos una imagen (para poder guardarla luego)
-  
-  for y in range(imgy):
-    zy = y * (yb - ya) / (imgy - 1)  + ya
-    
-    for x in range(imgx):
-      zx = x * (xb - xa) / (imgx - 1)  + xa
-      z = zx + zy * 1j
-      c = z
-      
-      for i in range(maxIt):
-        if abs(z) > 2.0: break 
-        z = z * z + c
+paleta = [[255,    0,   0], 
+	  [0,    255,   0], 
+	  [0,      0, 255]]
         
-      i = maxIt - i
-      col = color_rgb(i%10*25, i%16*16, i%8*32)
-        
-      win.plot(x, y, col)   # Pintamos en paralelo en la pantalla y en la imagen
-      im.setPixel(x, y, col)
-      
-    win.update()  #Actualizamos la ventana cada vez que se completa una fila (para hacer mas rapido el calculo, que no se redibuje cada vez que se pinte un pixel)
-        
-  im.save(nombreFicheroPPM);  # Grabamos en formato PPM
-        
-#x1 = float(input("Introduce x1: "))
-#y1 = float(input("Introduce y1: "))
-#x2 = float(input("Introduce x2: "))
-#y2 = float(input("Introduce y2: "))
+x1 = float(input("Introduce x1: "))
+y1 = float(input("Introduce y1: "))
+x2 = float(input("Introduce x2: "))
+y2 = float(input("Introduce y2: "))
+renderizaMandelbrotBonito(x1, y1, x2, y2, 400, 255, "templates/fich_2.png", paleta, 3 );
 
-#pintaMandelbrot(x1, y1, x2, y2, 400, 255, "fich.ppm");
-
-#time.sleep(5)
+time.sleep(5)
