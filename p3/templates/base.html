@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Tourism Surfing Web Template</title>
+	<!--
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	-->
+			<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+</head>
+<body>
+	<div id="header">
+		<div id="logo" >
+			<a href="index.html"><img src="/static/images/logo_ugr.png" alt="Logo" ></a>
+		</div>
+		<div id="user">
+			{% if user %}
+			<p>
+				Registrado como {{user}}. 
+				<a href="logout.html" class="link2">Logout</a>
+			</p>
+		{% endif %}
+		</div>
+		
+	</div>
+	<div id="body">
+		<div>
+			<ul class="navbar-nav mr-auto" id="navigation">
+				<li>
+					<a href="index.html" class="link1">Home</a>
+				</li>
+				<li>
+					{% if user %}
+						<a href="logout.html" class="link2">Logout</a>
+					{% else %}
+						<a href="login.html" class="link2">Login</a>
+   					{% endif %}
+				</li>
+				<li>
+					<a href="surfbase.html" class="link1">Surf Base</a>
+				</li>
+				<li>
+					<a href="newsblog.html" class="link2">News &amp; Blog</a>
+				</li>
+				<li>
+					<a href="about.html" class="link1">About</a>
+				</li>
+				{% if user %}
+				<li>
+					<a href="datos.html" class="link2">Datos</a>
+				</li>
+				<li>
+					<div class="link1" id="historial">
+						<p>
+							Historial: 
+							{% if historial %}
+							{% for i in historial %}
+								{% if i != 0 %}
+									<br><a href="{{i}}">{{i}}</a>
+								{%endif%}
+							{%endfor%}
+						{% endif %}
+						</p>
+					</div>
+				</li>
+				{% endif %}
+			</ul>
+			{% block content %}{% endblock %}
+		</div>
+	</div>
+	<div id="footer">
+		<div>
+			<div id="newsletter">
+				<h3>Newsletter</h3>
+				<p>
+					You can remove any link to our website from this website template, you&#39;re free to use this website template without linking back to us.
+				</p>
+				<form action="index.html">
+					<input type="text" value="email address" onblur="this.value=!this.value?'email address':this.value;" onfocus="this.select()" onclick="this.value='';">
+				</form>
+			</div>
+			<div id="connect">
+				<h3>Social</h3>
+				<a href="http://freewebsitetemplates.com/go/facebook/" id="facebook" target="_blank">Facebook</a>
+				<a href="http://freewebsitetemplates.com/go/twitter/" id="twitter" target="_blank">Twitter</a>
+				<a href="http://freewebsitetemplates.com/go/googleplus/" id="googleplus" target="_blank">Google&#43;</a>
+			</div>
+		</div>
+		<p>
+			&copy; Copyright
+		</p>
+		<p>
+			Prácticas DAI 2018 - Pedro Luis Fuertes
+		</p>
+	</div>
+</body>
+</html>

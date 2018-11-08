@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+{% if user %}
+  <div id="datos">
+  <h1>Datos del usuario {{ user }}</h1>
+  {% if datos%}
+  <br>
+  <br>
+  <br>
+  <table style="width:100%">
+    <tr>
+    {% for i in datos %}
+      <th> {{ i }} </th>
+    {% endfor %}
+    </tr>
+    <tr>
+    {% for i in datos %}
+      <th> {{ datos[i] }} </th>
+    {% endfor %}
+    </tr>
+  </table>
+
+  <h2>Modificar datos.</h2>
+  <div id  = "iniciar_sesion">
+      <form action = "datos" method = "POST">
+       <p>Usuario <input type="text" name="user" value={{datos['user']}}></p>
+       <p>Contraseña <input type="password" name="pass" value={{datos['pass']}}></p>
+       <input type = "submit" value = "Modificar" />
+    </form>
+    </div>
+  {% else %}
+    <p>No se han enconrado datos</p>
+  </div>
+  {% endif %}
+{% endif %}
+{% endblock %}
