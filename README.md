@@ -21,6 +21,12 @@ Permite almacenar información localmente.
 
 * Si la aplicación no funciona tras instalar todo, reniciar el equipo.*
 
+Instalación de Mondo BD
+ - sudo apt-get install mongodb
+
+Instalación de las librerías de Mongo para Phyton
+ - pip3 install pymongo
+
 ## Como lanzar el servidor
 
 export FLASK_ENV=development
