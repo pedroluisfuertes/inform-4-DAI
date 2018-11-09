@@ -6,7 +6,7 @@ except:
 
 from mandelbrot import *
 from flask import request # Para obtener los parámetros que te pasan por la url
-from flask import Response #Para poder enviar imágenes 
+from flask import Response, send_file #Para poder enviar imágenes 
 from flask import Flask, render_template # Para renderizar plantillas, de jinja por ejemplo. 
 
 app = Flask(__name__)
@@ -41,12 +41,13 @@ def pintaMandelbrot():   # los parometros estan en el request
               [0,      0, 255]];
 
     renderizaMandelbrotBonito(x1, y1, x2, y2, 400, 255, "templates/pintaMandelbrotPic.png", paleta, 3 );
-    imagen_png = Image.open("templates/pintaMandelbrotPic.png")
-    response = Response()
-    response.headers.add('Content-Type', 'image/png')
+    #imagen_png = open("templates/pintaMandelbrotPic.png").read()
+    #response = Response()
+    #response = make_response(imagen_png)
+    #response.headers.add('Content-Type', 'image/png')
     #response.set_data(imagen_png)   # Datos binarios
-    #return response
-    return "Imagen creada"
+    return send_file("templates/pintaMandelbrotPic.png", mimetype='image/png')
+   # return "Imagen creada"
 
     #return render_template('fractal.html')
 
