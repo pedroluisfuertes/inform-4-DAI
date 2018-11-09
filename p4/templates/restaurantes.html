@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="div-trans">
+
+    <h3>Buscar Restaurantes </h3>
+      <form action="/restaurantes" method="POST">
+        <p>Nombre Restaurante<input type="text" name="Nombre"></p>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success">Buscar </button>
+        </div>
+      </form>
+  </div>
+
+<div class="div-trans text-center">
+    <h3>Se han encontrado un total de {{tam}} restaurates</h3>
+     <table class="table" >
+           <thead>
+            <tr>
+               <th> Nombre </th>
+               <th> Localización </th>
+            </tr>
+          </thead>
+          <tbody id="cuerpotabla">
+         {% for i in rest %}
+         
+            <tr>
+               <th  > {{ i['name']}} </th>
+               <th > {{ i['location']['coordinates']}} </th>           
+            </tr>
+            
+         {% endfor %}
+         </tbody>
+      </table>
+
+{% endblock %}

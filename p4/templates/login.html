@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+	<div id="login">
+    <h2>
+      Registrarse
+    </h2>
+    <div id  = "registrar">
+      <form action = "usuario" method = "POST">
+         <p>Usuario <input type="text" name="user"></p>
+         <p>Contraseña <input type="password" name="pass"></p>
+         <input type = "submit" value = "Registrar" />
+      </form>
+    </div>
+    <p></p>
+    <h2>
+    Iniciar sesión
+    </h2>
+    <div id  = "iniciar_sesion">
+      <form action = "login" method = "POST">
+       <p>Usuario <input type="text" name="user"></p>
+       <p>Contraseña <input type="password" name="pass"></p>
+       <input type = "submit" value = "Login" />
+    </form>
+    </div>
+    {% if error %}
+      <div class = "error">
+        {{ error }} 
+      </div>
+    {%endif%}
+  </div>
+
+{% endblock %}
