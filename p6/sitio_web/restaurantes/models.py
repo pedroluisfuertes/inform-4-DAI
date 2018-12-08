@@ -19,14 +19,13 @@ class Plato(models.Model):
     )
     ALERGENOS = (())
 
-    nombre = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    precio = models.DecimalField(max_digits = 5,decimal_places=2, validators=[MinValueValidator(Decimal('0.00'))])
+    nombre = models.TextField(max_length = 200, blank = False) 
+    precio = models.DecimalField(max_digits = 5,decimal_places=2, validators=[MinValueValidator(Decimal('0.00'))], blank = False)
     tiposCocinas = models.CharField(choices=TIPOS_COCINAS, default=ESPANOA,max_length=100)
     alergenos = models.CharField(choices=ALERGENOS, default=ESPANOA,max_length=100)
     descripcion = models.TextField(max_length = 500)
 
     def insertar(self):
-        self.published_date = timezone.now()
         self.precio = 0
         self.save()
 
@@ -35,7 +34,7 @@ class Plato(models.Model):
 
     def modificar(self):
         self.precio = 0
-
+    
     def __str__(self):
         return self.nombre
 
