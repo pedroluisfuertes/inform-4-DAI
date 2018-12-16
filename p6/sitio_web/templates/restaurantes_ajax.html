@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Restaurantes (Ajax)</h2>
+<ul id="lista_rest">
+  	{%for item in lista%}
+  		<li>{{item.name}}</li>
+  	{%endfor%}
+</ul>
+
+<ul class="pagination pagination-sm justify-content-center">
+    
+    {% for i in paginador %}
+    	<li >
+    		<a  href="javascript:paginador({{i}})" id="paginador">{{i}}</a>
+    	</li>
+    {%endfor%}
+    
+</ul>
+{% endblock %}
+
+{% block scripts %}
+
+function paginador(pag){
+    $.get ("{%url 'restajax'%}",    // Hacemos un get a la URL
+            {pagina:pag},              // parámetros en la url clave:valor
+            function (data)         // callback
+            {          
+                $('#lista_rest').empty(); 
+                
+                var restaurantes = data['restaurantes']; // Sacamos los restaurantes
+                
+                for (var i = 0; i < restaurantes.length; i++) {
+                    $('#lista_rest').append(
+                        '<li>' + restaurantes[i][0] + '</li>'
+                    )
+                }
+            });
+}
+
+
+
+
+{% endblock %}

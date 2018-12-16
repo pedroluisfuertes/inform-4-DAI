@@ -2,14 +2,15 @@
 {% load static %}
 
 {% block content %}
-
-  Prueba
-  <a href="{% url 'index' %}">index </a>
+<h2>Restaurantes</h2>
 <ul>
-  {%for item in lista%}
-  	<li>{{item.name}}</li>
+  	{%for item in lista%}
+  		<li>{{item.name}}</li>
   	{%endfor%}
 </ul>
 {% endblock %}
 
-  
+{% block scripts %}
+
+
+{% endblock %}

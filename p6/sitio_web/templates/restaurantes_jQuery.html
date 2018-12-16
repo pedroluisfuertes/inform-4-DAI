@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+    
+{% endblock %}
+
+{% block content %}
+<h2>Restaurantes (Ajax)</h2>
+<ul id="lista_rest">
+    {% with x=0 %}
+  	{%for item in lista%}
+        <div id="rest{{forloop.counter}}" style="display:none" >
+            <li>{{item.name}}</li>
+            
+        </div>
+  	{%endfor%}
+    {%endwith%}
+</ul>
+
+<ul class="pagination pagination-sm" centre>
+    
+    {% for i in paginador %}
+    	<li >
+    		<a  href="javascript:paginador({{i}})" id="paginador">{{i}}</a>
+    	</li>
+    {%endfor%}
+    
+</ul>
+
+{% endblock %}
+
+{% block scripts %}
+
+pagActual = 0;
+const rest_por_pag = {{rest_por_pag}}
+
+paginador(0)
+
+function paginador(pag){
+
+    for (i = rest_por_pag * pagActual; i < rest_por_pag * (pagActual + 1); i++){
+        id = "#rest" + i
+        $(id).removeAttr("style").show();
+        $(id).hide();
+
+    }
+    
+    pagActual = pag
+
+    for (i = rest_por_pag * pagActual; i < rest_por_pag * (pagActual + 1); i++){
+        id = "#rest" + i
+        $(id).removeAttr("style").hide();
+        $(id).show();
+    }
+                
+}
+
+{% endblock %}

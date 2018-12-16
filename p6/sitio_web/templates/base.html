@@ -3,35 +3,56 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>DAI</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <!-- Jquery y Ajax -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <title>DAI</title>
 
+        {% block style %}
+        {% endblock %}
+
+        <script>
+            $(document).ready(function(){
+                $("#hide_menu").click(function(){
+                    $("#menu").animate({
+                        height: 'toggle'
+                    });
+                });
+                $("#show_menu").click(function(){
+                    $("#menu").animate({
+                        height: 'toggle'
+                    });
+                });
+                $("#show_modo_oscuro").click(function(){
+                    $("body").css("background-color", "black");
+                    $("text").css("color", "white");
+                    $("a").css("color", "white");
+                    $("li").css("color", "white");
+                    $("h1").css("color", "white");
+                    $("h2").css("color", "white");
+                    $("h3").css("color", "white");
+                    $("label").css("color", "white");
+                    
+                });
+                $("#hide_modo_oscuro").click(function(){
+                    $("body").css("background-color", "white");
+                    $("text").css("color", "black");
+                    $("a").css("color", "black");
+                    $("li").css("color", "black");
+                    $("h1").css("color", "black");
+                    $("h2").css("color", "black");
+                    $("h3").css("color", "black");
+                    $("label").css("color", "black");
+                });
+            });
+
+        </script>
     </head>
 
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Menú</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/restaurantes/test_template/">Test</a></li>
-                    <li><a href="/restaurantes/">Restaurantes</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div>
-    </nav>
-
         <div class="container">
             <div class="row justify-content-center">
                 <h1 class="mt-2">Diseño de aplicaciones para internet</h1>
@@ -41,25 +62,32 @@
                   {% endblock %}
                 </div>
                 <div class="col-md-4 hidden-sm">
-                    <h3 class="mt-4">Menu</h3>
-                    <ul id="navigation">
-                        <li>
-                            <a href="{% url 'index' %}" class="link1">Home</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'test_template' %}">Test</a>
-                        </li>
-                        <li>
-                            <a href="/restaurantes/">Restaurantes</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'add_plato' %}">Añadir plato</a>
-                        </li>
-                        <li>
-                        </li>
-                    </ul>
+                    <button id="show_menu">Ver menú</button>
+                    <button id="hide_menu">Ocultar menú</button>
+                    <div id="menu">
+                        <h3 class="mt-4">Menu</h3>
+                        <ul id="navigation">
+                            <li>
+                                <a href="{% url 'index' %}" class="link1">Home</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'test_template' %}">Test</a>
+                            </li>
+                            <li>
+                                <a href="/restaurantes/">Restaurantes</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'add_plato' %}">Añadir plato</a>
+                            </li>
+
+                        </ul>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="row justify-content-center">
+            <button id="show_modo_oscuro">Ver modo oscuro</button>
+            <button id="hide_modo_oscuro">Ocultar modo oscuro</button>
         </div>
 
         <!-- footer -->
@@ -67,8 +95,9 @@
         <!-- All that javascript -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
-
-        {% block scripts %}
-        {% endblock %}
+        <script>
+            {% block scripts %}
+            {% endblock %}
+        </script>
     </body>
 </html>
