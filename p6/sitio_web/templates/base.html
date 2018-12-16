@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load socialaccount %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -79,7 +80,13 @@
                             <li>
                                 <a href="{% url 'add_plato' %}">Añadir plato</a>
                             </li>
-
+                            <li>
+                                {% if user.is_authenticated %}
+                                <p>Bienvenido {{ user.username }} !!!</p>
+                                {% else %}
+                                <a href="{% provider_login_url 'github' %}">Iniciar sesión</a>
+                                {% endif %}
+                            </li>
                         </ul>
                     </div>
                 </div>
