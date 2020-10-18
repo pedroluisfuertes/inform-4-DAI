@@ -1,6 +1,9 @@
 # Prácticas de la asignatura de Disaño de aplicaciondes para Internet
-
-## Prerequisitos 
+## Contenido
+ - Flask
+ - Django
+## Guía de instalación
+### Prerequisitos 
 
  - sudo apt-get update
 
@@ -27,7 +30,8 @@ Instalación de Mondo BD
 Instalación de las librerías de Mongo para Phyton
  - pip3 install pymongo
 
-## Como lanzar el servidor
+### Como lanzar el servidor
 
 export FLASK_ENV=development
 FLASK_APP=hello.pylask run
+
